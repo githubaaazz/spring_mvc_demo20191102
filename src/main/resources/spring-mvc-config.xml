@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+       <!--配置映射处理器  匹配查询url，匹配到后返回给总调度器-->
+       <bean class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"></bean>
+        <!-- 配置处理适配器  管理所有的自定义控制器  找到对应的自定义控制器去处理业务请求
+            返回要处理的路径和数据模型 ModelAndView
+        -->
+        <bean class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"></bean>
+        <!--配置视图解析器  根据上一步逻辑视图名和视图解析的配置，去找到真正的视图（jsp,html...）-->
+        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+             <!--设值注入  配置前缀-->
+            <property name="prefix" value="/WEB-INF/jsp/"></property>
+            <!--后缀 最终返回 /WEB-INF/jsp/dept.jsp-->
+            <property name="suffix" value=".jsp"></property>
+        </bean>
+
+        <!--自定义控制器-->
+        <bean name="/dept" class="com.aaa.mvc.controller.DeptController"></bean>
+</beans>

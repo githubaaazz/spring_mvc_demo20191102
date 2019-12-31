@@ -1,0 +1,33 @@
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+  <display-name>Archetype Created Web Application</display-name>
+
+  <!--总调度器 开始-->
+    <servlet>
+      <servlet-name>springmvc</servlet-name>
+      <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+       <!--加载自定义springmvc配置文件-->
+      <init-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:springmvc-config.xml</param-value>
+      </init-param>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>springmvc</servlet-name>
+      <!--拦截所有请求 -->
+      <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+  <!--总调度器 结束-->
+     <!--解决静态资源也被springmvc总调度器拦截-->
+    <!-- <servlet-mapping>
+       <servlet-name>default</servlet-name>
+       <url-pattern>*.png</url-pattern>
+       <url-pattern>*.js</url-pattern>
+       <url-pattern>*.css</url-pattern>
+       <url-pattern>*.jpg</url-pattern>
+       <url-pattern>*.jpeg</url-pattern>
+       <url-pattern>*.gif</url-pattern>
+     </servlet-mapping>-->
+</web-app>
